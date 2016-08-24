@@ -1,4 +1,4 @@
-package alessandro.firebaseandroid.model;
+package net.derohimat.firebasechat.model;
 
 import com.google.firebase.database.Exclude;
 

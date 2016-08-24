@@ -1,4 +1,4 @@
-package alessandro.firebaseandroid.adapter;
+package net.derohimat.firebasechat.adapter;
 
 import android.content.Context;
 import android.graphics.Bitmap;

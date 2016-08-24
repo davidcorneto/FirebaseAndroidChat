@@ -1,10 +1,10 @@
-package alessandro.firebaseandroid.view;
+package net.derohimat.firebasechat.view;
 
 import android.app.ProgressDialog;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -13,14 +13,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.Request;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.bumptech.glide.request.target.SizeReadyCallback;
-import com.bumptech.glide.request.target.Target;
 
-import alessandro.firebaseandroid.R;
-import alessandro.firebaseandroid.adapter.CircleTransform;
+import net.derohimat.firebasechat.R;
+import net.derohimat.firebasechat.adapter.CircleTransform;
+
 
 public class FullScreenImageActivity extends AppCompatActivity {
 
@@ -52,34 +50,34 @@ public class FullScreenImageActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        if (id == android.R.id.home){
+        if (id == android.R.id.home) {
             onBackPressed();
         }
         return super.onOptionsItemSelected(item);
     }
 
 
-    private void bindViews(){
+    private void bindViews() {
         progressDialog = new ProgressDialog(this);
         mImageView = (TouchImageView) findViewById(R.id.imageView);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        ivUser = (ImageView)toolbar.findViewById(R.id.avatar);
-        tvUser = (TextView)toolbar.findViewById(R.id.title);
+        ivUser = (ImageView) toolbar.findViewById(R.id.avatar);
+        tvUser = (TextView) toolbar.findViewById(R.id.title);
     }
 
-    private void setValues(){
-        String nameUser,urlPhotoUser,urlPhotoClick;
+    private void setValues() {
+        String nameUser, urlPhotoUser, urlPhotoClick;
         nameUser = getIntent().getStringExtra("nameUser");
         urlPhotoUser = getIntent().getStringExtra("urlPhotoUser");
         urlPhotoClick = getIntent().getStringExtra("urlPhotoClick");
-        Log.i("TAG","imagem recebida "+urlPhotoClick);
+        Log.i("TAG", "imagem recebida " + urlPhotoClick);
         tvUser.setText(nameUser); // Name
-        Glide.with(this).load(urlPhotoUser).centerCrop().transform(new CircleTransform(this)).override(40,40).into(ivUser);
+        Glide.with(this).load(urlPhotoUser).centerCrop().transform(new CircleTransform(this)).override(40, 40).into(ivUser);
 
-        Glide.with(this).load( urlPhotoClick).asBitmap().override(640,640).fitCenter().into(new SimpleTarget<Bitmap>() {
+        Glide.with(this).load(urlPhotoClick).asBitmap().override(640, 640).fitCenter().into(new SimpleTarget<Bitmap>() {
 
             @Override
             public void onLoadStarted(Drawable placeholder) {
@@ -95,7 +93,7 @@ public class FullScreenImageActivity extends AppCompatActivity {
 
             @Override
             public void onLoadFailed(Exception e, Drawable errorDrawable) {
-                Toast.makeText(FullScreenImageActivity.this,"Erro, tente novamente",Toast.LENGTH_LONG).show();
+                Toast.makeText(FullScreenImageActivity.this, "Erro, tente novamente", Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
             }
         });
