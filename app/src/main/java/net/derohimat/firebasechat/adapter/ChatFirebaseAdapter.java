@@ -93,13 +93,13 @@ public class ChatFirebaseAdapter extends FirebaseRecyclerAdapter<ChatModel, Chat
         }
     }
 
-    public class MyChatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    class MyChatViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView tvTimestamp, tvLocation;
         EmojiconTextView txtMessage;
         ImageView ivUser, ivChatPhoto;
 
-        public MyChatViewHolder(View itemView) {
+        MyChatViewHolder(View itemView) {
             super(itemView);
             tvTimestamp = (TextView) itemView.findViewById(R.id.timestamp);
             txtMessage = (EmojiconTextView) itemView.findViewById(R.id.txtMessage);
@@ -119,22 +119,22 @@ public class ChatFirebaseAdapter extends FirebaseRecyclerAdapter<ChatModel, Chat
             }
         }
 
-        public void setTxtMessage(String message) {
+        void setTxtMessage(String message) {
             if (txtMessage == null) return;
             txtMessage.setText(message);
         }
 
-        public void setIvUser(String urlPhotoUser) {
+        void setIvUser(String urlPhotoUser) {
             if (ivUser == null) return;
             Glide.with(ivUser.getContext()).load(urlPhotoUser).centerCrop().transform(new CircleTransform(ivUser.getContext())).override(40, 40).into(ivUser);
         }
 
-        public void setTvTimestamp(String timestamp) {
+        void setTvTimestamp(String timestamp) {
             if (tvTimestamp == null) return;
             tvTimestamp.setText(converteTimestamp(timestamp));
         }
 
-        public void setIvChatPhoto(String url) {
+        void setIvChatPhoto(String url) {
             if (ivChatPhoto == null) return;
             Glide.with(ivChatPhoto.getContext()).load(url)
                     .override(100, 100)
@@ -143,7 +143,7 @@ public class ChatFirebaseAdapter extends FirebaseRecyclerAdapter<ChatModel, Chat
             ivChatPhoto.setOnClickListener(this);
         }
 
-        public void tvIsLocation(int visible) {
+        void tvIsLocation(int visible) {
             if (tvLocation == null) return;
             tvLocation.setVisibility(visible);
         }
